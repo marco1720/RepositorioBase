@@ -1,0 +1,29 @@
+
+#menu {
+padding: 5px;
+}
+
+#menu li {
+	display:inline;
+}
+#menu li a:hover{
+	background-color: #FFFFFF;
+	color: #000000;
+	padding-bottom:4px;
+	
+}
+#menu li a{
+	float:left;
+	background-color: #000000;
+	color: #ffffff;
+	font-size:40px;
+	font-family: Times;
+	border-radius: 15px;
+	text-decoration: none;
+	padding: 10px;
+}
+
+
+
+
+
