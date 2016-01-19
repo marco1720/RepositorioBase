@@ -1,33 +1,78 @@
 create table nuevo(id_us int auto_increment primary key,direccion int ,foreign key(direccion)references cod(id_cod));
 
+
+
+
+
 delimiter #
-create procedure nuevo(b int)
+
+create procedure control(b int)
 begin
+
 declare a int;
+
 declare c int;
+
 set c=0;
+
 set a=0;
+
 while(a<=b)do
+
 set c=RAND()*142220;
+
 insert into nuevo values(null,c);
+
 set a=a+1;
-end while; 
+
+end while;
+
+
+SELECT
+        
+id_us,cod.colonia,cod.municipio,cod.estado,cod.cp 
+
+FROM
+ 
+       nuevo,cod 
+WHERE
+        
+ nuevo.direccion=cod.id_cod
+
+
+INTO OUTFILE
+ 
+       'C:\\Users\\Alumnos\\Downloads\\NuevaTabla.txt'
+  
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '-';
+
+
+
+
 end
 #
 
-call nuevo(100);
+
+
+call control(1);
+
+
+
 
 SELECT
-        id_us,cod.colonia,cod.municipio,cod.estado,cod.cp
-
-FROM
-        nuevo,cod
-WHERE
-        id_us<100 and nuevo.direccion=cod.id_cod
-
+        
+id_ape,apelli from      
+ ape
 INTO OUTFILE
-        'C:\\Users\\marco\\Downloads\\fichero_salida.csv'
-        FIELDS TERMINATED BY ';'
-        LINES TERMINATED BY '\r\n';
+ 
+       'C:\\Users\\Alumnos\\Downloads\\apellidos.sql'
+  
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '\r\n';
+
+
 
 
