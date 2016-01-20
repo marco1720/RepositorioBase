@@ -1,33 +1,96 @@
-create table nuevo(id_us int auto_increment primary key,direccion int ,foreign key(direccion)references cod(id_cod));
+create procedure control(numero de registros,nombre de la tabla, tipo de archivo)
+
+
+
+
 
 delimiter #
-create procedure nuevo(b int)
+
+create procedure control(in b int,tabla varchar(50))
 begin
+
 declare a int;
+
 declare c int;
+declare e int;
+declare f int;
+declare g int;
+declare h int;
 set c=0;
-set a=0;
+
+set a=1;
+drop table if exists tabla;
+create table tabla (id_us int primary key,direccion int ,nombre int,ape_pat int,ape_mat int,foreign key(direccion)references cod(id_cod)
+,foreign key(nombre)references nombre(id_nombre),foreign key(ape_pat)references ape(id_ape),foreign key(ape_mat)references ape(id_ape));
 while(a<=b)do
+
 set c=RAND()*142220;
-insert into nuevo values(null,c);
+set e=RAND()*200;
+set f=RAND()*200;
+set g=RAND()*200;
+
+set h=a;
+
+insert into tabla values(a,c,e,f,g);
 set a=a+1;
-end while; 
+end while;
+
+SELECT
+        
+id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,ape.apelli 
+
+FROM
+ 
+       tabla,cod,nombre,ape 
+WHERE
+ 
+tabla.direccion=cod.id_cod
+
+ and tabla.nombre=nombre.id_nombre and tabla.ape_pat=ape.id_ape and tabla.ape_mat=ape.id_ape
+ INTO OUTFILE
+ 
+       'C:\\Users\\marco\\Downloads\\tabla.txt'
+  
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '-';
+
+
+
+
 end
 #
 
-call nuevo(100);
+
+
+call control(10,'hola')#
 
 SELECT
-        id_us,cod.colonia,cod.municipio,cod.estado,cod.cp
+        
+id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,ape.apelli 
 
 FROM
-        nuevo,cod
+ 
+       tabla,cod,nombre,tabla,ape 
 WHERE
-        id_us<100 and nuevo.direccion=cod.id_cod
+ 
+tabla.direccion=cod.id_cod
 
+ and tabla.nombre=nombre.id_nombre and tabla.ape_pat=ape.id_ape and tabla.ape_mat=ape.id_ape
+
+SELECT
+        id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,ape.apelli
+
+FROM
+        nombre inner join tabla on (nombre.id_nombre=tabla.nombre)inner join cod on(tabla.direccion=cod.id_cod)inner join ape on (tabla.ape_pat=ape.id_ape)
 INTO OUTFILE
-        'C:\\Users\\marco\\Downloads\\fichero_salida.csv'
-        FIELDS TERMINATED BY ';'
-        LINES TERMINATED BY '\r\n';
+ 
+       'C:\\Users\\marco\\Downloads\\datosfromadoa.csv'
+  
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '-';
+
+#
 
 
