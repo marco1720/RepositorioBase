@@ -1,4 +1,4 @@
-create table nuevo(id_us int auto_increment primary key,direccion int ,foreign key(direccion)references cod(id_cod));
+create procedure control(numero de registros,nombre de la tabla)
 
 
 
@@ -6,22 +6,35 @@ create table nuevo(id_us int auto_increment primary key,direccion int ,foreign k
 
 delimiter #
 
-create procedure control(b int)
+create procedure control(b int,d varchar(100))
 begin
 
 declare a int;
 
-declare c int;
+declare c int(6);
+declare e int(3);
+declare f int(3);
+declare g int(3);
 
-set c=0;
 
-set a=0;
+set c=1;
 
+set a=1;
+
+drop table if exist tabla;
+create table tabla (id_us int auto_increment primary key,direccion int ,nombre int,ape_pat int,ape_mat int,foreign key(direccion)references cod(id_cod)
+,foreign key(nombre)references nombre(id_nombre),foreign key(ape_pat)references ape(id_ape),foreign key(ape_mat)references ape(id_ape));
 while(a<=b)do
 
 set c=RAND()*142220;
 
-insert into nuevo values(null,c);
+set e=RAND()*200;
+
+set f=RAND()*200;
+
+set g=RAND()*200;
+
+insert into tabla values(null,c,e,f,g);
 
 set a=a+1;
 
@@ -34,11 +47,10 @@ id_us,cod.colonia,cod.municipio,cod.estado,cod.cp
 
 FROM
  
-       nuevo,cod 
+       tabla,cod 
 WHERE
         
- nuevo.direccion=cod.id_cod
-
+ tabla.direccion=cod.id_cod
 
 INTO OUTFILE
  
@@ -56,22 +68,7 @@ end
 
 
 
-call control(1);
-
-
-
-
-SELECT
-        
-id_ape,apelli from      
- ape
-INTO OUTFILE
- 
-       'C:\\Users\\Alumnos\\Downloads\\apellidos.sql'
-  
-      FIELDS TERMINATED BY ','
-    
-    LINES TERMINATED BY '\r\n';
+call control(100000);
 
 
 
