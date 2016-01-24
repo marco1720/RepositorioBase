@@ -1,61 +1,47 @@
-create procedure control(numero de registros,nombre de la tabla, tipo de archivo)
-
-
-
-
-
-
-
-
 
 delimiter #
-
-<<<<<<< HEAD
-create procedure control(in b int,tabla varchar(50))
-=======
-create procedure control(b int)
->>>>>>> origin/master
+drop procedure if exists control #
+create procedure control(in b int)
 begin
-
 declare a int;
-
 declare c int;
-<<<<<<< HEAD
 declare e int;
 declare f int;
 declare g int;
-declare h int;
-set c=0;
-
+set c=1;
 set a=1;
+set f=1;
+set e=1;
+set g=1;
 drop table if exists tabla;
 create table tabla (id_us int primary key,direccion int ,nombre int,ape_pat int,ape_mat int,foreign key(direccion)references cod(id_cod)
-,foreign key(nombre)references nombre(id_nombre),foreign key(ape_pat)references ape(id_ape),foreign key(ape_mat)references ape(id_ape));
+,foreign key(nombre)references nombre(id_nombre),foreign key(ape_pat)references ape(id_ape),foreign key(ape_mat)references apm(id_apm));
+
 while(a<=b)do
 
-set c=RAND()*142220;
-set e=RAND()*200;
-set f=RAND()*200;
-set g=RAND()*200;
-
-set h=a;
-
+set c=RAND()*(142220-1)+1;
+set e=RAND()*(199-1)+1;
+set f=RAND()*(199-1)+1;
+set g=RAND()*(199-1)+1;
 insert into tabla values(a,c,e,f,g);
 set a=a+1;
 end while;
 
 SELECT
         
-id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,ape.apelli 
+id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,apm.apm 
 
 FROM
  
-       tabla,cod,nombre,ape 
+       tabla,cod,nombre,ape,apm
 WHERE
  
 tabla.direccion=cod.id_cod
 
- and tabla.nombre=nombre.id_nombre and tabla.ape_pat=ape.id_ape and tabla.ape_mat=ape.id_ape
+ and tabla.nombre=nombre.id_nombre and tabla.ape_pat=ape.id_ape  and tabla.ape_mat=apm.id_apm
+
+order by id_us asc
+
  INTO OUTFILE
  
        'C:\\Users\\marco\\Downloads\\tabla.txt'
@@ -71,97 +57,60 @@ end
 #
 
 
+call control(1000000)#
 
-call control(10,'hola')#
+
+
+
+
+
+
 
 SELECT
         
-id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,ape.apelli 
+'insert into table color (',id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,apm.apm
 
 FROM
  
-       tabla,cod,nombre,tabla,ape 
+       tabla,cod,nombre,ape,apm
 WHERE
  
 tabla.direccion=cod.id_cod
 
- and tabla.nombre=nombre.id_nombre and tabla.ape_pat=ape.id_ape and tabla.ape_mat=ape.id_ape
+ and tabla.nombre=nombre.id_nombre and tabla.ape_pat=ape.id_ape  and tabla.ape_mat=apm.id_apm and id_us<=100
 
-SELECT
-        id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,ape.apelli
-=======
+order by id_us asc
 
-set c=0;
-
-set a=0;
-
-while(a<=b)do
-
-set c=RAND()*142220;
-
-insert into nuevo values(null,c);
-
-set a=a+1;
-
-end while;
-
-
-SELECT
-        
-id_us,cod.colonia,cod.municipio,cod.estado,cod.cp 
-
-FROM
+ INTO OUTFILE
  
-       nuevo,cod 
-WHERE
-        
- nuevo.direccion=cod.id_cod
-
->>>>>>> origin/master
-
-FROM
-        nombre inner join tabla on (nombre.id_nombre=tabla.nombre)inner join cod on(tabla.direccion=cod.id_cod)inner join ape on (tabla.ape_pat=ape.id_ape)
-INTO OUTFILE
- 
-<<<<<<< HEAD
-       'C:\\Users\\marco\\Downloads\\datosfromadoa.csv'
-=======
-       'C:\\Users\\Alumnos\\Downloads\\NuevaTabla.txt'
->>>>>>> origin/master
+       'C:\\Users\\marco\\Downloads\\tabla.sql'
   
       FIELDS TERMINATED BY ','
     
-    LINES TERMINATED BY '-';
-
-<<<<<<< HEAD
-#
-=======
-
-
-
-end
-#
-
-
-
-call control(1);
-
-
+    LINES TERMINATED BY '\n';
 
 
 SELECT
         
-id_ape,apelli from      
- ape
-INTO OUTFILE
+id_apm,id_apm,id_apm,id_apm,apm
+
+FROM
  
-       'C:\\Users\\Alumnos\\Downloads\\apellidos.sql'
+    apm
+
+
+ INTO OUTFILE
+ 
+       'C:\\Users\\marco\\Downloads\\ape.txt'
   
       FIELDS TERMINATED BY ','
     
-    LINES TERMINATED BY '\r\n';
+    LINES TERMINATED BY '\n';
 
 
->>>>>>> origin/master
 
 
+load data infile 'C:\\Users\\marco\\Downloads\\ape.txt' insert into table apm   
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '\n';
