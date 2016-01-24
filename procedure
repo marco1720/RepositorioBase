@@ -1,0 +1,53 @@
+
+
+SELECT
+        
+'insert into table color (',id_us,cod.colonia,cod.municipio,cod.estado,cod.cp,nombre.nombre,nombre.sexo,ape.apelli,apm.apm
+
+FROM
+ 
+       tabla,cod,nombre,ape,apm
+WHERE
+ 
+tabla.direccion=cod.id_cod
+
+ and tabla.nombre=nombre.id_nombre and tabla.ape_pat=ape.id_ape  and tabla.ape_mat=apm.id_apm and id_us<=100
+
+order by id_us asc
+
+ INTO OUTFILE
+ 
+       'C:\\Users\\marco\\Downloads\\tabla.sql'
+  
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '\n';
+
+
+SELECT
+        
+id_apm,id_apm,id_apm,id_apm,apm
+
+FROM
+ 
+    apm
+
+
+ INTO OUTFILE
+ 
+       'C:\\Users\\marco\\Downloads\\ape.txt'
+  
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '\n';
+=======
+call control(100000);
+>>>>>>> origin/master
+
+
+
+
+load data infile 'C:\\Users\\marco\\Downloads\\ape.txt' insert into table apm   
+      FIELDS TERMINATED BY ','
+    
+    LINES TERMINATED BY '\n';
