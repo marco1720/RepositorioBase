@@ -16,22 +16,21 @@
 		<div> <h1>Bases disponibles</h1> </div>
 		<div>
 			<?php include "conec.php";
-	$mysqli->real_query("show databases; ");
+	$mysqli->real_query("show tables; ");
 	$query = $mysqli->store_result();
 	?>
 		<table border="1" width="400">
 			<tr>
-				<th>Bases de datos</th>
+				<th>Bases</th>
 			</tr>
 	<?php
 		while ($row = $query->fetch_assoc()){
-			if($row['Database']!='information_schema' && $row['Database']!='performance_schema'){
 			?>
 			<tr>
-				<td><?php echo $row['Database']?></td>
+				<td><?php echo $row['Tables_in_codigin']?></td>
 			</tr>
 			<?php
-			}
+			
 		}
 	$mysqli->close();
 	?>

@@ -1,19 +1,22 @@
 <?php 
  $va=$_GET['numero'];
- $fin=20;
+ $fin=21;
  if($va<$fin ){
- for($num=1;$num<=$va;$num++){
+ for($num=2;$num<=$va;$num++){
  		echo $num;
 	 	echo "<br/>";
-		echo "		<input type='text' align='middle' class='te' placeholder='valor' /> ";
-		echo "		<select id='".$num."' class='box' id='primero'>";
-		echo "			<option id='0'>Tipo de dato</option>";
-		echo "			<option id='nombre'>nombre</option>";
-		echo "			<option id='ape_pat'>apellido</option>";
-		echo "			<option id='ape_mat'>segundo apellido</option>";
-		echo "			<option id='colonia'>colonia</option>";
-		echo "			<option id='sexo'>sexo</option>";
-		echo "			<option id='estado'>estado</option>";
+		echo "		<input type='text' align='middle' class='te' id='a".$num."' placeholder='valor' /> ";
+		echo "		<select id='".$num."' class='box'>";
+		echo "			<option value='0'>Tipo de dato</option>";
+		echo "			<option value='id_us'>Identificador numerico</option>";
+		echo "			<option value='nombre.nombre'>nombre</option>";
+		echo "			<option value='ape.apelli'>apellido</option>";
+		echo "			<option value='apm.apm'>segundo apellido</option>";
+		echo "			<option value='nombre.sexo'>sexo</option>";
+		echo "			<option value='cod.colonia'>colonia</option>";
+		echo "			<option value='cod.municipio'>Municipio</option>";
+		echo "			<option value='cod.estado'>Estado</option>";
+		echo "			<option value='cod.cp'>CP</option>";
 		echo "		</select><br/><br/>";
  }
  }else{
