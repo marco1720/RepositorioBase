@@ -16,6 +16,6 @@ echo "Filas terminadas por:";
 	echo "<option id='.'>.</option>";
 	echo "</select>";
 }else{
-	echo "no";
+	echo "Datos preparados para insertar";
 }
 ?>

@@ -53,10 +53,8 @@ if(radio[0].checked){
     opci="txt"
 }else if(radio[2].checked){
     opci="sql"
-}else if (radio[3].checked){
-    opci="html"
 }
-   alert (opci);
+   
     xhr.open("GET","detalles.php?opcion="+opci,true);
     xhr.onreadystatechange=deta;
    
@@ -97,7 +95,6 @@ if(radio[0].checked){
  	sentencia=sentencia+tiempo;
  	}
  	}
- 	alert(sentencia);
  	var fila="";
  	var col="";
  		var opci="";
@@ -112,8 +109,6 @@ if(radio[0].checked){
  	var col=document.getElementById('cote').value;
 }else if(radio[2].checked){
     opci="sql"
-}else if (radio[3].checked){
-    opci="html"
 }
    var reg = document.getElementById('reg').value;
    var tab = document.getElementById('tabli').value;
@@ -135,8 +130,6 @@ if(radio[0].checked){
 			<ul id="menu">
 			<li><a href="nuevabase.php">Crear Base</a></li>
 			<li><a href="totalbases.php">Bases</a></li>
-			<li><a href="eje.html">1</a></li>
-			<li><a href="#">2</a></li>
 			</ul>
 		</div>
 		<br /><br /><br />
@@ -165,7 +158,7 @@ if(radio[0].checked){
 					<input type="radio" name="tipo" id="01"value="" onclick="mostrar();" />CSV
 					<input type="radio" name="tipo" id="02" value="" onclick="mostrar();" />TXT
 					<input type="radio" name="tipo" id="03" value="" onclick="mostrar();" />SQL
-					<input type="radio" name="tipo" id="04" value="" onclick="mostrar();" />HTML
+					
 					 </form>
 					 <div>
 					 	<div id="de" align="left">
@@ -174,7 +167,7 @@ if(radio[0].checked){
 					 		Numero de registros<br /> <input type="text" class="box" value="100" id='reg' />
 					 		<input type="button" class="box" value="Crear" onclick="consultar();" />
 					 	</div>
-				<br />
+				<br /><br /><br />
 				<div id='teb'></div>
 <div>
 	</center>

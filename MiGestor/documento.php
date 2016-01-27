@@ -5,9 +5,7 @@
 			$tab=$_GET['tab'];
 			$fil=$_GET['fila'];
 			$col=$_GET['col'];
-			echo $sentencia;
-			echo $tipo;
-			echo $filas;
+			echo "Datos creados en descargas";
 			if($tipo=='txt' OR  $tipo=='csv'){
 			$query = ('select '.$sentencia.' from tabla,cod,nombre,ape,apm 
 			WHERE
@@ -37,9 +35,9 @@ tabla.direccion=cod.id_cod
  
        "C:/Users/marco/Downloads/'.$tab.'.'.$tipo.'"
   
-      FIELDS TERMINATED BY ");"
+      FIELDS TERMINATED BY ","
     
-    LINES TERMINATED BY "\n";
+    LINES TERMINATED BY ");\n";
     ');
 			$mysqli->query($query);
 			}
